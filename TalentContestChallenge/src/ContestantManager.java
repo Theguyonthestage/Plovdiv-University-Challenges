@@ -90,7 +90,7 @@ public class ContestantManager {
             age = currentYear - fullYearOfBirth;
             totalAge += age;
         }
-        averageAge = (double) totalAge / filteredList.size();
+        averageAge = ( ) totalAge / filteredList.size();
         return averageAge;
     }
 }
