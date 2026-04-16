@@ -4,8 +4,8 @@ import java.util.Comparator;
 public class Catalogue {
     private ArrayList<Product> catalogue;
 
-    public Catalogue(ArrayList<Product> catalogue) {
-        this.catalogue = catalogue;
+    public Catalogue() {
+        this.catalogue = new ArrayList<>();
     }
 
     public ArrayList<Product> getCatalogue() {
@@ -39,7 +39,7 @@ public class Catalogue {
     }
 
     public Catalogue filterByType(int type) {
-        Catalogue filtered = new Catalogue(new ArrayList<>());
+        Catalogue filtered = new Catalogue();
         for (Product product : this.catalogue) {
             if (product.getType() == type) {
                 filtered.addToCatalogue(product);
@@ -52,4 +52,20 @@ public class Catalogue {
         catalogue.sort(Comparator.comparing(p -> p.getPricePerUnit() * p.getAvailability()));
     }
 
+    public void printAveragePriceForUnits() {
+        if (catalogue.size() <= 0) {
+            System.out.println("Няма въведени артикули от този тип.");
+        } else {
+            float total = 0;
+            float totalValue = 0;
+
+            for (Product product : catalogue) {
+                total += product.getPricePerUnit();
+                totalValue += product.getAvailability() * product.getPricePerUnit();
+            }
+            float averagePerUnit = (total / catalogue.size());
+            System.out.printf("Средна единична цена: %.2f лв.\n", averagePerUnit);
+            System.out.printf("Обща стойност: %.2f лв.\n", totalValue);
+        }
+    }
 }
